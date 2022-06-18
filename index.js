@@ -6,6 +6,21 @@ server.use(express.json());
 const userList = [];
 const tweets = [];
 
+function tweetsOrganize () {
+    let organizedList = []; 
+    if (tweets.length <= 10) {
+        for (i = (tweets.length - 1); i > -1; i--) {
+            organizedList.push(tweets[i]);
+        }
+        return (organizedList);
+    } else {
+        for (i = (tweets.length - 1); i> (tweets.length - 11); i--) {
+            organizedList.push(tweets[i]);
+        }
+        return (organizedList);
+    }
+}
+
 server.post('/sign-up', (request, response) => {
     const user = request.body;
     userList.push(user);
@@ -25,8 +40,7 @@ server.post('/tweets', (request, response) => {
 });
 
 server.get('tweets', (request, response) => {
-    const { username, tweet } = request.body;
-
+    response.send(tweetsOrganize());
 });
 
 server.listen(6000);
