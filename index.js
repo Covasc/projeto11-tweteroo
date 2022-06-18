@@ -9,12 +9,12 @@ const tweets = [];
 function tweetsOrganize () {
     let organizedList = []; 
     if (tweets.length <= 10) {
-        for (i = (tweets.length - 1); i > -1; i--) {
+        for (let i = (tweets.length - 1); i > -1; i--) {
             organizedList.push(tweets[i]);
         }
         return (organizedList);
     } else {
-        for (i = (tweets.length - 1); i> (tweets.length - 11); i--) {
+        for (let i = (tweets.length - 1); i> (tweets.length - 11); i--) {
             organizedList.push(tweets[i]);
         }
         return (organizedList);
@@ -24,7 +24,7 @@ function tweetsOrganize () {
 server.post('/sign-up', (request, response) => {
     const user = request.body;
     userList.push(user);
-    console.log('OK');
+    response.send('OK');
 });
 
 server.post('/tweets', (request, response) => {
@@ -36,11 +36,13 @@ server.post('/tweets', (request, response) => {
         }
     })
     tweets.push(userTweet);
-    console.log('OK');
+    response.send('OK');
 });
 
-server.get('tweets', (request, response) => {
+server.get('/tweets', (request, response) => {
     response.send(tweetsOrganize());
 });
 
-server.listen(6000);
+server.listen(6000, () => {
+    console.log('Rodando');
+});
