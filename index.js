@@ -1,4 +1,4 @@
-import express, { request } from 'express';
+import express, { request, response } from 'express';
 
 const server = express();
 server.use(express.json());
@@ -13,11 +13,20 @@ server.post('/sign-up', (request, response) => {
 });
 
 server.post('/tweets', (request, response) => {
-    const userTweet = request.body;
+    const { username, tweet } = request.body;
+    let userTweet = {};
+    userList.map( (user) => {
+        if (user.username === username) {
+            userTweet = { username: username, tweet: tweet, image: user.avatar}
+        }
+    })
     tweets.push(userTweet);
     console.log('OK');
 });
 
+server.get('tweets', (request, response) => {
+    const { username, tweet } = request.body;
 
+});
 
 server.listen(6000);
