@@ -10,6 +10,14 @@ server.post('/sign-up', (request, response) => {
     const user = request.body;
     userList.push(user);
     console.log('OK');
-})
+});
+
+server.post('/tweets', (request, response) => {
+    const userTweet = request.body;
+    tweets.push(userTweet);
+    console.log('OK');
+});
+
+
 
 server.listen(6000);
