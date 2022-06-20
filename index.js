@@ -61,6 +61,6 @@ server.get('/tweets', (request, response) => {
     response.send(tweetsOrganize());
 });
 
-server.listen(6000, () => {
+server.listen(5000, () => {
     console.log('Rodando');
 });
