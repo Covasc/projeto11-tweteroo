@@ -6,6 +6,24 @@ server.use(express.json());
 const userList = [];
 const tweets = [];
 
+// CRIEI ESSAS FUNÇÕES PARA FAZER A VALIDAÇÃO BONUS, NÃO SOUBE USAR DIREITO O REGEXP, AMANHÃ TIRAMOS ESTA DUVIDA
+// function URLValidate (string) {
+//     let re = RegExp(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(:[0-9]+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/);
+//     if (re.test(string) === false) {
+//         return (false);
+//     } else {
+//         return (true);
+//     };
+// };
+
+// function isEmpty (string) {
+//     if (string === "") {
+//         return (false);
+//     } else {
+//         return (true);
+//     };
+// };
+
 function tweetsOrganize () {
     let organizedList = []; 
     if (tweets.length <= 10) {
@@ -24,7 +42,7 @@ function tweetsOrganize () {
 server.post('/sign-up', (request, response) => {
     const user = request.body;
     userList.push(user);
-    response.send('OK');
+    response.status(201).send('OK');    
 });
 
 server.post('/tweets', (request, response) => {
@@ -36,7 +54,7 @@ server.post('/tweets', (request, response) => {
         }
     })
     tweets.push(userTweet);
-    response.send('OK');
+    response.status(201).send('OK');
 });
 
 server.get('/tweets', (request, response) => {
